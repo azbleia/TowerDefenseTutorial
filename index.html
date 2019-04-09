@@ -1,0 +1,137 @@
+<center>
+<h1>Leia Unity Tower Defense Tutorial</h1>
+<h1 id="PartTitle">1 / 10</h1>
+<h3 id="Instructions" ></h3>
+
+<!--<img id = "TutorialImage" src = "Part1.mp4" height="400"-->
+
+<div id = "videos">
+</div>
+<!--
+<video height="500" autoplay loop>
+<source id="TutorialImage" src="Part1.mp4" type="video/mp4">
+Browser doesn't support video
+</video>
+-->
+
+<br>
+<button id="PrevPage" onclick = "PrevPage()" align="left" disabled><h2>PREV</h2></button>
+<button id="NextPage" onclick = "NextPage()" align="right"><h2>NEXT</h2></button>
+<br>
+</center>
+
+
+<script src="jquery-3.3.1.min.js"></script>
+
+<script>
+
+let page = 1;
+let lastPage = 5;
+
+let gifs = [
+"",
+"Part1.mp4",
+"Part2.mp4",
+"Part3.mp4",
+"Part4.mp4",
+"Part5.mp4",
+"Part6.mp4",
+"Part7.mp4",
+"Part8.mp4",
+"Part9.mp4",
+"Part10.mp4",
+];
+
+let towerDefenseDownloadLink = "https://assetstore.unity.com/packages/essentials/tutorial-projects/tower-defense-template-107692";
+let lupDownloadLink = "https://developer.leialoft.com/main/documentation";
+
+let instructions = [
+`This tutorial will show you how to make content look great on the Leia Display,<br>using the Unity Tower Defense Template project.`,
+`To start, import the <a target="_blank" href="${towerDefenseDownloadLink}">Tower Defense Template</a> from the Unity Asset Store into a blank Unity project.<br><br>`,
+`Download and import the Leia Loft Unity SDK into your project from the  <a target="_blank" href="${lupDownloadLink}">LeiaLoft developer portal</a> .<br>Extract the folder and then import the package called LeiaLoft_Unity_Plugin_vx.x.x.unityPackage.`,
+`Open the Level1 scene and add a LeiaCamera component to the GameCamera game object.<br>This will enable multiview rendering from the game camera.<br>If you run the game now on any LitByLeia device, Level 1 will be rendered in multiview.`,
+``,
+``,
+``,
+``,
+``,
+``,
+``,
+``,
+``,
+];
+
+let newStr = ``;
+
+let videoDiv = $("#videos");
+
+for(let i = 0 ; i < gifs.length ; i++)
+	{
+	newStr = `
+	<video height="500" controls> //autoplay loop
+	<source src="${gifs[i]}" type="video/mp4">
+	Browser doesn't support video
+	</video><br>
+	`
+
+	let newVideoDiv = $(`<div id="TutorialImage${i}">`);
+
+	newVideoDiv.append(newStr);
+
+	if (i!=0)
+	newVideoDiv.hide();
+
+	videoDiv.append(newVideoDiv);
+	}
+
+
+UpdateInstructions();
+
+//$("#PrevPage").hide();
+
+function PrevPage()
+	{
+	page--;
+	console.log("PrevPage: "+page);
+
+	$("#NextPage").prop('disabled' , false);
+
+	if (page === 1) {
+		$("#PrevPage").prop('disabled' , true);  // hide();
+	}
+	UpdateInstructions();
+	}
+
+function NextPage()
+	{
+	page++;
+	console.log("NextPage: "+page);
+
+	$("#PrevPage").prop('disabled' , false);
+
+	if (page === lastPage) {
+		$("#NextPage").prop('disabled' , true);
+	}
+	UpdateInstructions();
+	}
+	
+function UpdateInstructions() 
+	{
+	$("#PartTitle").text(""+page+" / "+lastPage);
+
+	for(let i = 0 ; i < gifs.length ; i++)
+	{
+	$(`#TutorialImage${i}`).hide();
+	}
+	if (gifs[page-1] != "")
+	$(`#TutorialImage${page-1}`).show();
+
+	console.log("UpdateImage() "+gifs[page-1]);
+	$("#TutorialImage").attr("src", gifs[page-1]);
+	$("#Instructions").html(instructions[page-1]);
+	}
+
+</script>
+
+
+
