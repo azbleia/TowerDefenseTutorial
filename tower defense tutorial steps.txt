@@ -1,0 +1,10 @@
+unity tutorial steps:
+
+1. intro
+2. import tower defense template (needs to be updated to use new modified tower defense project)
+3. import leialoft unity sdk
+4. how to add leiacamera component
+5. explanation of leia camera bounds and convergence plane
+6. show good and bad positioning of objects within the camera bounds, and results
+7. explain disparity, 
+8. explanation of autofocus
