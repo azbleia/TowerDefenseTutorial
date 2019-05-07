@@ -10,3 +10,23 @@ h3 {
 p {
   color: white;
 }
+
+/* A link that has not been visited */
+a:link {
+  color: white;
+}
+
+/* A link that has been visited */
+a:visited {
+  color: white;
+}
+
+/* A link that is hovered on */
+a:hover {
+  color: yellow;
+}
+
+/* A link that is selected */
+a:active {
+  color: blue;
+}

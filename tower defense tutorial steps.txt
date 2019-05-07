@@ -6,5 +6,48 @@ unity tutorial steps:
 4. how to add leiacamera component
 5. explanation of leia camera bounds and convergence plane
 6. show good and bad positioning of objects within the camera bounds, and results
-7. explain disparity, 
+7. explain disparity
 8. explanation of autofocus
+
+
+
+
+Topics for Leia Unity SDK Tutorial:
+
+1. How to get the SDK from developer.leialoft.com
+2. Which unity package to import into your unity project
+3. How to add a LeiaCamera component to your game camera
+4. How to view the Leia Camera bounds in the scene editor
+	-> What they represent; how much depth the scene will have
+	-> Everything in the LeiaCamera bounds is compressed into several centimeters of 
+		virtual volume when on the Leia Display, so the larger the camera bounds are, the more 
+		compressed objects will be, and the smaller they are, the more stretched objects will be 
+		/ appear to have more depth. (Maybe show a visual representation of this with a 3dsmax animation)
+5. How to adjust baseline, and what the results will be
+6. How to adjust convergence / focus plane
+7. How to understand the interlacing you are seeing in the Unity editor 
+	and use it to predict how the game will look on the display
+8. Comment on how ideally everything the user should focus on should be within 
+	the near and far planes of the Leia Camera bounds to avoid ugly results 
+	of too much disparity between views
+9. Comment on how text and detailed images that the user will be focusing on 
+	should be near the focus plane.
+10. Comment on using the LeiaAutoFocus component to automatically adjust the convergence plane
+11. Commment on how ideally we don't want very large adjacent differences in convergence distance,
+	and it's better to have a smooth shift in convergence distance
+	<show video of convergence distance shifting really fast, and high disparity caused by things 
+	sticking too far out of screen because focus plane has gone way back to focus on far away object>
+12. Comment on how there's two intuitive solutions one might come up with for this, 
+	but only one of them will work:
+	1. We could have the convergence distance smoothly interpolate to the target value over time
+		-> Problem with this solution is you can get areas with very high disparity in the view
+	or
+	2. We could have the convergence distance based on an "auto focus mesh" map which smoothly 
+		changes it as you pan between different areas of the game map
+		-> This solution is better because it allows you to make the entire view have acceptable disparity
+		
+13. Comment on how it's better to have a separate smoothed out "auto focus mesh" which 
+	is invisible and on a collision layer only detected by auto focus raycasting.
+14. Show how to define which collision layers auto focus detects
+
+
